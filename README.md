@@ -4,11 +4,16 @@ A file-based framework for running a team of 5 specialized AI agents that handle
 
 Built for an ediscovery consulting and software business, but the pattern is reusable for any industry. Fork it, rename the agents, swap in your industry context, and you have your own autonomous team.
 
-## Origin
+## Why File-Based?
 
-Inspired by [Shubham Saboo's OpenClaw framework](https://github.com/Shubhamsaboo/openclaw) — a system where AI agents named after TV characters coordinate through files. This version uses the same file-based coordination model but is designed for a real business with real voice profiles, project isolation, and a phased rollout plan.
+Modern AI harnesses — Claude Code, Cursor, Windsurf, Cline, Aider, and others — all understand files natively. They read markdown, follow instructions in context, and write output to disk. This framework leans into that:
 
-## What This Is
+- **No vendor lock-in.** SOUL.md files work in any harness that reads project files.
+- **No infrastructure.** No databases, no queues, no orchestration servers. Git is your state management.
+- **Portable agents.** Move a SOUL.md between harnesses and the agent behaves the same way.
+- **Human-readable everything.** Every instruction, every output, every coordination artifact is a markdown file you can read and edit.
+
+Pick whichever harness fits your workflow. Open a session, point it at an agent's SOUL.md, and go.
 
 ## The Team
 
@@ -122,6 +127,19 @@ No APIs. No message queues. Just files — all within the active project directo
 
 One writer per file. Feedback goes in separate files.
 
+## Compatible Harnesses
+
+This framework works with any AI coding tool that can read project files and follow markdown instructions:
+
+- **Claude Code** — load a SOUL.md as context or point a session at the agent directory
+- **Cursor** — use SOUL.md as project rules or reference in chat
+- **Windsurf** — same pattern, rules files are natively supported
+- **Cline / Roo Code** — pass SOUL.md as system context
+- **Aider** — include SOUL.md in the chat context
+- **Any LLM with file access** — the pattern is just "read this markdown, follow these instructions"
+
+If your tool can read a file and follow instructions, it can run these agents.
+
 ## How to Get Started
 
 **Do not build all five agents on day one.**
@@ -141,26 +159,11 @@ By now you have research, content, and architecture flowing. Edison builds the s
 ### Week 5+: Add Projects
 When a new initiative comes up, create a new project directory. Assign agents. Set priority. The system scales horizontally.
 
-## Cost Estimate (Monthly)
-
-| Item | Estimated Cost |
-|------|---------------|
-| AI model API (Claude/GPT) | $100-200 |
-| Hosting (Vercel/Netlify) | $0-20 |
-| Chatbot API calls | $20-50 |
-| Stripe (transaction fees) | Variable |
-| Domain + DNS | ~$15/year |
-| **Total** | **~$150-300/month** |
-
-## Platform
-
-This design is platform-agnostic. The SOUL.md files and file-based coordination pattern works with OpenClaw, Claude scheduled tasks, LangGraph, CrewAI, or a custom setup.
-
 ## Making It Yours
 
 1. **Fork this repo**
 2. **Rename agents** — pick historical figures (or anyone) who embody the role
-3. **Build your voice profile** — feed Claude your sent emails and LinkedIn posts, ask it to find patterns. Replace the template in `projects/*/intel/research/voice-profile-*.md`
+3. **Build your voice profile** — feed your AI tool your sent emails and LinkedIn posts, ask it to find patterns. Replace the template in `projects/*/intel/research/voice-profile-*.md`
 4. **Swap industry context** — update SOUL.md files with your domain language, audience, and tech stack
 5. **Start with one agent** — don't build all five on day one. Start with the researcher, get comfortable, then add the rest
 
