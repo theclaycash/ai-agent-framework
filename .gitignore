@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Private intel (if you add real data locally)
+# Uncomment these if you populate with your actual voice profile and post history:
+# projects/*/intel/research/voice-profile-*.md
+# projects/*/intel/research/linkedin-post-history.md
